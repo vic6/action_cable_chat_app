@@ -10,7 +10,7 @@ module MessagesHelper
   # end
   #
   # def send_message(messageContent)
-  #   response = client.text_request(messageContent)
+  #   response = @client.text_request(messageContent)
   #   p response
   # end
 end
