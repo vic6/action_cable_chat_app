@@ -16,16 +16,13 @@ class MessagesController < ApplicationController
   def create
     message = current_user.messages.build(message_params)
     if message.save
-      p '*' * 50
-      p message
-      p '*' * 50
+      response = ChatbotExtension.instance.client.text_request(message.content)
+      response = response[:result][:fulfillment][:speech]
       ActionCable.server.broadcast('room_channel',
                                    content: message.content,
-                                   username: message.user.username)
+                                   username: message.user.username,
+                                   bot: response)
 
-      response = ChatbotExtension.instance.client.text_request(message.content)
-      p response[:result][:contexts]
-      p response
     else
       render 'index'
     end
