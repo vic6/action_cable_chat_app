@@ -11,11 +11,11 @@ App.room = App.cable.subscriptions.create "RoomChannel",
       $('#messages-table').append '<div class="message">' +
         '<div class="message-user">' + data.username + ":" + '</div>' +
         '<div class="message-content">' + data.content + '</div>' + '</div>'
-      
+
       $('#messages-table').append '<div class="message">' +
         '<div class="message-user">' + 'Robotrainer' + ":" + '</div>' +
         '<div class="message-content">' + data.bot + '</div>' + '</div>'
-    scroll_bottom()
+      scroll_bottom()
 
 $(document).on 'turbolinks:load', ->
   submit_message()
@@ -30,3 +30,7 @@ submit_message = () ->
 
 scroll_bottom = () ->
   $('#messages').scrollTop($('#messages')[0].scrollHeight)
+
+sleep = (ms) ->
+  start = new Date().getTime()
+  continue while new Date().getTime() - start < ms
