@@ -8,7 +8,7 @@ App.room = App.cable.subscriptions.create "RoomChannel",
   received: (data) ->
     # Called when there's incoming data on the websocket for this channel
     unless data.content.blank?
-
+      scroll_bottom()
       $('.chat').append '<li class="left clearfix">' + '<span class="chat-img pull-left">
         <img src="http://placehold.it/50/55C1E7/fff&text=U" alt="User Avatar" class="img-circle"/>
       </span>' + '<div class="chat-body clearfix">
@@ -39,7 +39,7 @@ submit_message = () ->
       event.preventDefault()
 
 scroll_bottom = () ->
-  $('.chat').scrollTop($('.left clearfix')[0].scrollHeight)
+  $('.panel-body').scrollTop($('.panel-body')[0].scrollHeight)
 
 sleep = (ms) ->
   start = new Date().getTime()
