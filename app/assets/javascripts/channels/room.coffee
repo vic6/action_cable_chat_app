@@ -8,13 +8,23 @@ App.room = App.cable.subscriptions.create "RoomChannel",
   received: (data) ->
     # Called when there's incoming data on the websocket for this channel
     unless data.content.blank?
-      $('#messages-table').append '<div class="message">' +
-        '<div class="message-user">' + data.username + ":" + '</div>' +
-        '<div class="message-content">' + data.content + '</div>' + '</div>'
 
-      $('#messages-table').append '<div class="message">' +
-        '<div class="message-user">' + 'Robotrainer' + ":" + '</div>' +
-        '<div class="message-content">' + data.bot + '</div>' + '</div>'
+      $('.chat').append '<li class="left clearfix">' + '<span class="chat-img pull-left">
+        <img src="http://placehold.it/50/55C1E7/fff&text=U" alt="User Avatar" class="img-circle"/>
+      </span>' + '<div class="chat-body clearfix">
+        <div class="header">' + '<strong class="primary-font">' + data.username + '</strong>
+        <small class="pull-right text-muted">
+          <span class="glyphicon glyphicon-time"></span>12 mins ago</small></div>' + '<p>' + data.content + '</p>' + '</div>' + '</li>'
+
+      $('.chat').append '<li class="left clearfix">' + '<span class="chat-img pull-left">
+       <img src="http://placehold.it/50/55C1E7/fff&text=U" alt="User Avatar" class="img-circle"/>
+     </span>' + '<div class="chat-body clearfix">
+       <div class="header">' + '<strong class="primary-font">' + 'Robotrainer' + '</strong>
+       <small class="pull-right text-muted">
+         <span class="glyphicon glyphicon-time"></span>12 mins ago</small></div>' + '<p>' + data.bot + '</p>' + '</div>' + '</li>'
+
+
+
       scroll_bottom()
 
 $(document).on 'turbolinks:load', ->
@@ -29,7 +39,7 @@ submit_message = () ->
       event.preventDefault()
 
 scroll_bottom = () ->
-  $('#messages').scrollTop($('#messages')[0].scrollHeight)
+  $('.chat').scrollTop($('.left clearfix')[0].scrollHeight)
 
 sleep = (ms) ->
   start = new Date().getTime()

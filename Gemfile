@@ -13,6 +13,7 @@ gem 'jbuilder',                '2.4.1'
 gem 'awesome_print', require: 'ap'
 gem 'api-ai-ruby'
 gem 'bootstrap-sass'
+gem "therubyracer"
 
 group :development, :test do
   gem 'sqlite3', '1.3.13'
