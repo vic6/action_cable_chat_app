@@ -32,7 +32,7 @@ $(document).on 'turbolinks:load', ->
   scroll_bottom()
 
 submit_message = () ->
-  $('#message_content').on 'keydown', (event) ->
+  $('#btn-input').on 'keydown', (event) ->
     if event.keyCode is 13
       $('input').click()
       event.target.value = ''

@@ -1,6 +1,8 @@
-<div class="message-input">
-  <%= form_for(@message, remote: true) do |f| %>
-  <%= f.text_area :content %>
-  <%= f.submit "Send" %>
-  <% end %>
+<div class="panel-footer">
+  <div class="input-group">
+    <%= form_for(@message, remote: true) do |f| %>
+    <%= f.text_field :content, id: 'btn-input', class:"form-control input-sm", placeholder: 'Type your message here...' %>
+    <%= f.submit "Send", class: "btn btn-warning btn-sm", id: "btn-chat"%>
+    <% end %>
+  </div>
 </div>
