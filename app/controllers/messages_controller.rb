@@ -13,20 +13,41 @@ class MessagesController < ApplicationController
   #   p response[:result][:contexts]
   #   p '*' * 50
   # end
+
+  def response
+    ChatbotExtension.instance.client.text_request(message.content)
+    response = response[:result][:fulfillment][:speech]
+  end
+
   def create
     message = current_user.messages.build(message_params)
     if message.save
-      response = ChatbotExtension.instance.client.text_request(message.content)
-      response = response[:result][:fulfillment][:speech]
+      # response = ChatbotExtension.instance.client.text_request(message.content)
+      # response = response[:result][:fulfillment][:speech]
+      # ActionCable.server.broadcast('room_channel',
+      #                              content: message.content,
+      #                              username: message.user.username,
+      #                              bot: response)
+      # sleep(2)
+      #
+      # ActionCable.server.broadcast('room_channel',
+      #                              content: message.content,
+      #                              username: message.user.username,
+      #                              bot: response)
       ActionCable.server.broadcast('room_channel',
-                                   content: message.content,
-                                   username: message.user.username,
-                                   bot: response)
+                                   content: render_message(message))
+      #
+      sleep(1.5)
+      #
+      ActionCable.server.broadcast('room_channel',
+                                   content: render_message(response))
 
     else
       render 'index'
     end
   end
+
+
 
   private
 
@@ -37,5 +58,20 @@ class MessagesController < ApplicationController
 
   def message_params
     params.require(:message).permit(:content)
+  end
+
+  def render_message(message)
+    p '*' * 500
+    p message
+    p '*' * 500
+
+    render partial: 'message', locals: { message: message }
+  end
+
+  def render_response(message)
+    p '*' * 500
+    p message
+    p '*' * 500
+    render partial: 'message', locals: { response: response }
   end
 end

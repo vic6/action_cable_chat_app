@@ -8,23 +8,7 @@ App.room = App.cable.subscriptions.create "RoomChannel",
   received: (data) ->
     # Called when there's incoming data on the websocket for this channel
     unless data.content.blank?
-      scroll_bottom()
-      $('.chat').append '<li class="left clearfix">' + '<span class="chat-img pull-left">
-        <img src="http://placehold.it/50/55C1E7/fff&text=U" alt="User Avatar" class="img-circle"/>
-      </span>' + '<div class="chat-body clearfix">
-        <div class="header">' + '<strong class="primary-font">' + data.username + '</strong>
-        <small class="text-muted">
-          <span></span></small></div>' + '<p>' + data.content + '</p>' + '</div>' + '</li>'
-
-      $('.chat').append '<li class="right clearfix">' + '<span class="chat-img pull-right">
-       <img src="https://blogs-images.forbes.com/markhughes/files/2016/01/Terminator-2-1200x873.jpg?width=960" alt="User Avatar width="10" height="40"" class="img-circle"/>
-     </span>' + '<div class="chat-body clearfix">
-       <div class="header">' + '<strong class="pull-right primary-font">' + 'Robotrainer' + '</strong>
-       <small class="text-muted">
-         <span><br></span></small></div>' + '<p class="pull-right primary-font">' + data.bot + '</p>' + '</div>' + '</li>'
-
-
-
+      $('.chat').append data.content
       scroll_bottom()
 
 $(document).on 'turbolinks:load', ->
