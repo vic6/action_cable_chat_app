@@ -34,12 +34,16 @@ class MessagesController < ApplicationController
       #                              username: message.user.username,
       #                              bot: response)
       ActionCable.server.broadcast('room_channel',
-                                   content: render_message(message),
-                                   bot: response)
+                                   content: render_response(response),
+                                   bot: response
+                                   )
       #
       # #
       # ActionCable.server.broadcast('room_channel',
       #                              bot: response)
+      p '$' * 4000
+      p response
+      p '$' * 4000
     else
       render 'index'
     end
@@ -68,6 +72,6 @@ class MessagesController < ApplicationController
     p '*' * 500
     p message
     p '*' * 500
-    render partial: 'message', locals: { response: response }
+    render partial: 'message'
   end
 end
