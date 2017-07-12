@@ -4,6 +4,7 @@
 .chat {
   list-style: none;
   margin-left: 30px;
+  margin-right: 30px;
   padding: 0;
 }
 
@@ -32,7 +33,7 @@
 
 .panel-body {
   overflow-y: scroll;
-  height: 250px;
+  height: 400px;
 }
 
 ::-webkit-scrollbar-track {
@@ -47,8 +48,8 @@
 
 .bubble {
   position: relative;
-  background: #ffb366;
-  border: 1px solid #FFCC00;
+  background: #16c2e0;
+  border: 1px solid #16c2e0;
   max-width: 250px;
   padding: 10px;
   font-family: arial;
@@ -72,14 +73,14 @@
 
 .bubble:after {
   border-color: rgba(255, 255, 204, 0);
-  border-right-color: #ffb366;
+  border-right-color: #16c2e0;
   border-width: 15px;
   margin-top: -15px;
 }
 
 .bubble:before {
   border-color: rgba(255, 204, 0, 0);
-  border-right-color: #FFCC00;
+  border-right-color: #16c2e0;
   border-width: 16px;
   margin-top: -16px;
 }
@@ -98,7 +99,7 @@
 
 .bubble-bot:after,
 .bubble-bot:before {
-  right: 100%;
+  left: 100%;
   top: 50%;
   border: solid transparent;
   content: " ";
@@ -106,19 +107,19 @@
   width: 0;
   position: absolute;
   pointer-events: none;
-  margin-left: 30px;
+  margin-right: 30px;
 }
 
 .bubble-bot:after {
   border-color: rgba(255, 255, 204, 0);
-  border-right-color: #ffb366;
+  border-left-color: #ffb366;
   border-width: 15px;
   margin-top: -15px;
 }
 
 .bubble-bot:before {
   border-color: rgba(255, 204, 0, 0);
-  border-right-color: #FFCC00;
+  border-left-color: #FFCC00;
   border-width: 16px;
   margin-top: -16px;
 }
