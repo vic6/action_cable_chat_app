@@ -1,20 +1,14 @@
 <% if defined?(message.user) %>
-  <li class="left clearfix">
-  <div class="chat-body clearfix">
-    <p class='bubble'>
-      <%= message.content %>
-    </p>
-  </div>
-  </li>
-<% else %>
-  <li class="right clearfix">
-  <span class="chat-img pull-right">
+<li class="right clearfix">
   <div class="chat-body clearfix">
     <div class="header">
-      <strong class="primary-font">Robotrainer<strong>
+      <small class="text-muted">
+        <span><br></span>
+      </small>
     </div>
-    <p>
-    </p>
+    <p class="pull-left primary-font bubble">
+      <%= message.content %></p>
   </div>
-  </li>
+</li>
+
 <% end %>
