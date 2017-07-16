@@ -17,10 +17,9 @@ gem 'therubyracer'
 
 gem 'font-awesome-rails'
 gem 'jquery-easing-rails'
-gem 'sqlite3'
 
 group :development, :test do
-  gem 'byebug',  '9.0.0', platform: :mri
+  gem 'byebug', '9.0.0', platform: :mri
 end
 
 group :development do
@@ -37,10 +36,9 @@ group :test do
   gem 'guard-minitest',           '2.4.4'
 end
 
-# commented out for eb
-# group :production do
-#   gem 'pg',   '0.18.4'
-# end
+group :production do
+  gem 'sqlite3'
+end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
