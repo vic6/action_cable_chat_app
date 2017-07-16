@@ -14,13 +14,12 @@ class MessagesController < ApplicationController
   #   p '*' * 50
   # end
 
-
   def create
-
     message = current_user.messages.build(message_params)
     if message.save
       response = ChatbotExtension.instance.client.text_request(message.content)
       response = response[:result][:fulfillment][:speech]
+      # Delays bot response by charactor count
       delay = response.length * 0.01
       sleep(delay)
       # ActionCable.server.broadcast('room_channel',
@@ -35,12 +34,7 @@ class MessagesController < ApplicationController
       #                              bot: response)
       ActionCable.server.broadcast('room_channel',
                                    content: render_response(response),
-                                   bot: response
-                                   )
-      #
-      # #
-      # ActionCable.server.broadcast('room_channel',
-      #                              bot: response)
+                                   bot: response)
       p '$' * 4000
       p response
       p '$' * 4000

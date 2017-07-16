@@ -11,6 +11,14 @@ App.room = App.cable.subscriptions.create "RoomChannel",
       $('.chat').append '<li class="left clearfix">' + '<div class="chat-body clearfix">
        <div class="header">
        <small class="text-muted">
+         <span><br></span></small></div>' + '<p class="pull-right primary-font">' + '<div class="typing-indicator left clear">
+  <span></span>
+  <span></span>
+  <span></span>
+</div>'+ '</p>' + '</div>' + '</li>'
+      $('.chat').append '<li class="left clearfix">' + '<div class="chat-body clearfix">
+       <div class="header">
+       <small class="text-muted">
          <span><br></span></small></div>' + '<p class="pull-right primary-font bubble-bot">' + data.bot + '</p>' + '</div>' + '</li>'
       scroll_bottom()
 
@@ -25,7 +33,9 @@ submit_message = () ->
       $('.chat').append '<li class="right clearfix">' + '<div class="chat-body clearfix">
        <div class="header">
        <small class="text-muted">
-         <span><br></span></small></div>' + '<p class="pull-left primary-font bubble">' + event.target.value + '</p>' + '</div>' + '</li>'
+         <span><br></span></small></div>' + '<p id="current" class="pull-left primary-font bubble">' + event.target.value + '</p>' + '</div>' + '</li>' +
+
+
       event.target.value = ''
       event.preventDefault()
       scroll_bottom()
