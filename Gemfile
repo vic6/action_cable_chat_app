@@ -35,9 +35,9 @@ group :test do
   gem 'guard-minitest',           '2.4.4'
 end
 
+gem 'puma'
+gem 'sqlite3'
 group :production do
-  gem 'puma'
-  gem 'sqlite3'
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
